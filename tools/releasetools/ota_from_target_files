@@ -401,7 +401,7 @@ script.Print("Setting symlinks and permissions...")
 script.MakeSymlinks(symlinks)
 if OPTIONS.aslr_mode:
     script.RetouchBinaries(retouch_files)
-  else:
+else:
     script.UndoRetouchBinaries(retouch_files)
 
 
