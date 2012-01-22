@@ -398,11 +398,12 @@ def WriteFullOTAPackage(input_zip, output_zip):
 script.Print("Setting symlinks and permissions...")
 
 (symlinks, retouch_files) = CopySystemFiles(input_zip, output_zip)
-script.MakeSymlinks(symlinks)
-if OPTIONS.aslr_mode:
-script.RetouchBinaries(retouch_files)
-else:
-script.UndoRetouchBinaries(retouch_files)
+  script.MakeSymlinks(symlinks)
+  if OPTIONS.aslr_mode:
+    script.RetouchBinaries(retouch_files)
+  else:
+    script.UndoRetouchBinaries(retouch_files)
+
 
   boot_img = common.GetBootableImage("boot.img", "boot.img",
                                      OPTIONS.input_tmp, "BOOT")
