@@ -398,7 +398,7 @@ def WriteFullOTAPackage(input_zip, output_zip):
 script.Print("Setting symlinks and permissions...")
 
 (symlinks, retouch_files) = CopySystemFiles(input_zip, output_zip)
-  script.MakeSymlinks(symlinks)
+script.MakeSymlinks(symlinks)
   if OPTIONS.aslr_mode:
     script.RetouchBinaries(retouch_files)
   else:
