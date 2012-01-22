@@ -383,12 +383,19 @@ def WriteFullOTAPackage(input_zip, output_zip):
 
   script.ShowProgress(0.5, 0)
 
+  script.Print("")
+  script.Print("**** JDK-X by jdkoreclipse *****")
+  script.Print("")
+  script.Print("Flashing System...")
+
   if OPTIONS.wipe_user_data:
     script.FormatPartition("/data")
 
   script.FormatPartition("/system")
   script.Mount("/system")
   script.UnpackPackageDir("system", "/system")
+
+script.Print("Setting symlinks and permissions...")
 
   (symlinks, retouch_files) = CopySystemFiles(input_zip, output_zip)
   script.MakeSymlinks(symlinks)
@@ -407,8 +414,11 @@ def WriteFullOTAPackage(input_zip, output_zip):
   common.ZipWriteStr(output_zip, "boot.img", boot_img.data)
   script.ShowProgress(0.2, 0)
 
+  script.Print("Writing boot.img...")
   script.ShowProgress(0.2, 10)
   script.WriteRawImage("/boot", "boot.img")
+
+script.Print("Enjoy your stay!")
 
   script.ShowProgress(0.1, 0)
   device_specific.FullOTA_InstallEnd()
